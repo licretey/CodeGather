@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!--获取自定义cacheManager-->
+    <bean
+            id="ehcache07GuavaSlefCacheManager"
+            class="com.cache.Ehcache07GuavaSlefCacheManager"/>
+
+    <bean
+            id="selfKeyGenerator"
+            class="com.cache.Ehcache08SelfKeyGenerator"/>
+
+
+    <!--使用cacheAble注解时需要配置，作用和org.springframework.cache.annotation.EnableCaching注解相同-->
+    <cache:annotation-driven proxy-target-class="true"
+                             cache-manager="ehcache07GuavaSlefCacheManager"
+                             key-generator="selfKeyGenerator"/>
+
+    <bean class="com.cache.bean.impl.UserServiceImpl"/>
+</beans>

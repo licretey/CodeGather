@@ -31,8 +31,8 @@ public class Json04JacksonReverse {
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         // 全局配置：自动发现spi发现jackson的model并注册生效
         objectMapper.findAndRegisterModules();
-        // 通用配置：驼峰转下划线
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        // 通用配置：驼峰转下划线（当前版本已过时）
+        // objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         // 全局配置：手动配置时间module并注册
         JavaTimeModule javaTimeModule = new JavaTimeModule();
         javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));

@@ -6,7 +6,15 @@
 
     <groupId>org.example</groupId>
     <artifactId>CodeGather</artifactId>
-    <version>1.0-SNAPSHOT</version><packaging>pom</packaging><modules><module>redis</module><module>cache</module><module>json</module><module>excel</module><module>guava</module></modules>
+    <version>1.0-SNAPSHOT</version><packaging>pom</packaging>
+    <modules>
+        <module>redis</module>
+        <module>cache</module>
+        <module>json</module>
+        <module>excel</module>
+        <module>guava</module>
+        <module>snap</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

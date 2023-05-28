@@ -14,6 +14,7 @@
         <module>excel</module>
         <module>guava</module>
         <module>snap</module>
+        <module>juc</module>
     </modules>
 
     <properties>

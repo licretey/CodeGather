@@ -15,6 +15,7 @@
         <module>guava</module>
         <module>snap</module>
         <module>juc</module>
+        <module>common</module>
     </modules>
 
     <properties>

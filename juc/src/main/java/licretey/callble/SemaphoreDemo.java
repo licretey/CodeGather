@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SemaphoreDemo {
     public static void main(String[] args) {
-        // 线程最大数量
+        // 信号量：线程最大数量
         Semaphore semaphoreDemo = new Semaphore(3);
 
         for (int i = 0; i < 6; i++) {

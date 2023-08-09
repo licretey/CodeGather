@@ -16,6 +16,7 @@
         <module>snap</module>
         <module>juc</module>
         <module>common</module>
+        <module>spring</module>
     </modules>
 
     <properties>

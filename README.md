@@ -18,5 +18,7 @@
 ### 1.4 Guava
 ### 1.5 Redis
 ### 1.6 Cache
+### 1.7 Snap
+#### 1.7.1 几种Retry
 
 

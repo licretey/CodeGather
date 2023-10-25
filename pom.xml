@@ -17,6 +17,9 @@
         <module>juc</module>
         <module>common</module>
         <module>spring</module>
+        <module>zookeeper</module>
+        <module>rocketmq</module>
+        <module>http</module>
     </modules>
 
     <properties>
@@ -53,9 +56,9 @@
         </dependency>
         <!--工具包-->
         <dependency>
-            <groupId>hu.blackbelt.bundles.guava</groupId>
-            <artifactId>com.google.guava</artifactId>
-            <version>28.0_1</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>32.1.1-jre</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>

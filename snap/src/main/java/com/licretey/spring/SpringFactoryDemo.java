@@ -24,10 +24,10 @@ public class SpringFactoryDemo {
 
             // 实例化容器。自动创建所有配置文件中的对象存入容器中
             beans = new HashMap<>();
-            Enumeration<String> keys = props.keys(); // 读取配置文件中所有的key
+            Enumeration<Object> keys = props.keys(); // 读取配置文件中所有的key
             while (keys.hasMoreElements()) {
                 String key = keys.nextElement().toString();
-                String beanPath = props.get(key);
+                String beanPath = (String) props.get(key);
                 Object valueBean = Class.forName(beanPath).newInstance();
                 beans.put(key, valueBean);
             }

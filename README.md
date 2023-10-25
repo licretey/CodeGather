@@ -15,8 +15,26 @@
 + 03版 `.xls`后缀，最多65536行
 + 07版：`.xlsx`后缀，理论上行数无限实际上只有1048576行
 
-### 1.4 Guava
+## 二 Guava
+
+### 2.1 utilites
+
+#### 2.1.1 Joiner
+
+
+
+### 2.2 functional
+
+### 2.3 collections
+
+### 2.4 cache
+
+### 2.5 eventBus
+
+### 2.6 workFiles
+
+
+
 ### 1.5 Redis
 ### 1.6 Cache
-
 

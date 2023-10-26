@@ -15,15 +15,15 @@ import java.util.function.Consumer;
  */
 public class MyBatisUtil {
     private static volatile SqlSessionFactory sqlSessionFactory = null;
+    public static final String RESOURCE_FILE_NAME = "mybatis-config.xml";
 
     public static SqlSessionFactory getSqlSessionFactory() {
         // double check 双重检查, 保证SqlSessionFactory全局只创建一次
         if (sqlSessionFactory == null) {
             synchronized (MyBatisUtil.class) {
                 if (sqlSessionFactory == null) {
-                    String resource = "mybatis-config.xml";
                     try {
-                        Reader reader = Resources.getResourceAsReader(resource);
+                        Reader reader = Resources.getResourceAsReader(RESOURCE_FILE_NAME);
                         sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
                     } catch (IOException e) {
                         e.printStackTrace();

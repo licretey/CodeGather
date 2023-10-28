@@ -61,13 +61,13 @@ public class Zook01 {
     public void setData() throws Exception {
         this.createConnection();
         // 修改数据
-        curator.setData().forPath("/licretey1", "yang".getBytes(StandardCharsets.UTF_8));
+        curator.setData().forPath("/licretey1", "hang".getBytes(StandardCharsets.UTF_8));
         // 根据版本去修改数据
         int version = 0;
         Stat status = new Stat();
         curator.getData().storingStatIn(status).forPath("/licretey1");
         version = status.getVersion();
-        curator.setData().withVersion(version).forPath("/licretey1", "yang".getBytes(StandardCharsets.UTF_8));
+        curator.setData().withVersion(version).forPath("/licretey1", "hang".getBytes(StandardCharsets.UTF_8));
     }
 
     public void deleteNode() throws Exception {

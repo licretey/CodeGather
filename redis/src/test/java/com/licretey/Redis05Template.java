@@ -19,7 +19,7 @@ public class Redis05Template {
     // private final static ObjectMapper mapper = new ObjectHashMapper();
     // @Test
     // void testStr(){
-    //     User user = new User("yang","19");
+    //     User user = new User("hang","19");
     //     //序列化
     //     String json = mapper.writeValueAsString(user);
     //     template.opsForValue().set("user:10",json);
@@ -30,7 +30,7 @@ public class Redis05Template {
 
     @Test
     void testHash(){
-        template.opsForHash().put("user:11","uname","yang");
+        template.opsForHash().put("user:11","uname","hang");
         Map<Object, Object> entries = template.opsForHash().entries("user:11");
     }
 

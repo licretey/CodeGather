@@ -42,6 +42,7 @@ sudo apt install ./nvim-linux.deb
 sudo chmod  nvim-linux.deb
 sudo apt install ./nvim-linux.deb
 nvim --version
+-- appimage包，配置快捷键路径即可
 ```
 
 ### 星火商店
@@ -232,6 +233,12 @@ openvpn /etc/openvpn/client.ovpn > /dev/null &
 > 新建`/etc/profile.d/proxy.sh`填写配置信息
 > 
 + [参考链接](https://blog.csdn.net/u011119817/article/details/110856212)
+
+### wine8+
+
++ 下载`configFile`中的key文件
++ [wine-builds 清华镜像站](https://mirrors-i.tuna.tsinghua.edu.cn/help/wine-builds/)
++ [如何在 Debian 12/11/10 上安装 Wine 8.0](https://jigutech.com/4271.html)
 
 
 

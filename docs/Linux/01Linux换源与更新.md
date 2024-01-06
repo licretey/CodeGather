@@ -84,6 +84,8 @@ sudo apt-get autoclean: 清理旧版本的软件缓存
 sudo apt-get clean: 清理所有软件缓存
 
 sudo apt-get autoremove: 删除系统不再使用的孤立软件
+
+sudo apt show xxx: 查看软件包信息
 ```
 
 

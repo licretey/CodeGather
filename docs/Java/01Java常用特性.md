@@ -22,7 +22,16 @@
 
 ## 一 流
 
++ map: 将流中的每个元素，转为另一种元素，形成新流
++ flatmap：将多个流合并为一个流
++ parallel：形成并发流，多线程方式执行（无界队列，不推荐使用）
+
 ## 二 函数式
+
++ R function(T t);
++ Boolean predicate(T t);
++ void consumer(T t);
++ R supply(T t);
 
 ## 三  Optional与方法引用
 

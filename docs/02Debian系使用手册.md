@@ -1,3 +1,748 @@
+[TOC]
+
+zsh:1: 没有那个文件或目录: 01Linux/
+
+
+
+## 一 Ubuntu 22.04 Linux更换源教程
+
+> 为了更快的下载速度，我们常常需要把Ubuntu自带的国外源换成国内源
+
+更换源步骤如下：
+
+ 1、备份源列表
+
+```bash
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+```
+
+2、命令行打开`sources.list`文件
+
+```bash
+sudo gedit /etc/apt/sources.list
+# 或者
+sudo vi /etc/apt/sources.list
+```
+
+ 将源文件内容全部注释，并添加以下内容任意源
+
+> 阿里云源
+
+```cpp
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+```
+
+> 清华源
+
+```cpp
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security multiverse
+```
+
+ 3、保存：`ESC+：wq！`
+
+##  二 更新与apt
+
++ 更新之前可以安装nala包管理工具
+```shell
+sudo apt install nala
+# 后续所有apt命令可改为nala了
+# 如sudo nala update
+# 不好用！！！
+```
+
+> 换源之后就可以快速的更新了
+
+```shell
+sudo apt-get update: 升级安装包相关的命令,刷新可安装的软件列表(但是不做任何实际的安装动作)
+
+sudo apt-get upgrade: 进行安装包的更新(软件版本的升级)
+
+sudo apt-get dist-upgrade: 进行系统版本的升级(Ubuntu版本的升级)
+
+sudo do-release-upgrade: Ubuntu官方推荐的系统升级方式,若加参数-d还可以升级到开发版本,但会不稳定
+
+sudo apt-get autoclean: 清理旧版本的软件缓存
+
+sudo apt-get clean: 清理所有软件缓存
+
+sudo apt-get autoremove: 删除系统不再使用的孤立软件
+```
+
+
+ 4、更新源
+
+```sql
+sudo apt-get update
+```
+
+ 5、更新软件，然后你就可以感受到更换国内源之后的飞速提升了
+
+```csharp
+sudo apt-get dist-upgrade
+sudo apt-get upgrade
+```
+
+(6、或者如下操作)
+
+```
+sudo apt update && sudo apt-get dist-upgrade -y && sudo apt-get upgrade -y
+```
+
+
+## 三 Ubuntu环境构建
+
++ 设置Ubuntu的Root密码（如果没有）
+
+```shell
+sudo passwd root
+-- 输入三次密码即可
+```
+
+### Gnome基本环境工具
+
++ 安装基本工具
+
+```shell
+# 使用gnome-teaks设置进行优化
+sudo apt install gnome-tweaks
+# 安装插件管理工具
+sudo apt install 
+```
+
++ ubuntu22 Dock栏最小化最大化切换
+
+```shell
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+```
+
++ 安装编解码器，和微软字体（播放流媒体需要）
+
+```shell
+ sudo apt install ubuntu-restricted-extras
+```
+
++ 设置gnome-terminal的默认开启位置
+> 先安装gconf-editor , 安装完成后打开gconf-editor
+> 找到`/desktop/gnome/applications/terminal/exec`
+> 并修改该项的值为： gnome-terminal  --geometry 120x30+154+70
+> 说明：90：宽度 46：高度 154：横坐标 70：纵坐标
+
+
++ terminator安装
+
+> 默认情况下安装完terminator后会替换默认终端，使用如下方式切会自带终端：
+> `sudo update-alternatives --config x-terminal-emulator`
+> 选择/usr/bin/gnome-terminal.wrapper；
+> 
+
+### Github与Git
+
++ Ubuntu可以使用gh官方token管理工具进行处理
+
+```shell
+# 安装git
+sudo apt-get install git
+
+# 管理账户
+sudo apt install gh
+gh auth login    
+```
+
+### 按键映射
+
+
+```bash
+sudo apt install dconf-editor
+dconf-editor
+# 使用dconf-editor切换
+
+# 使用gnome-teaks设置
+sudo apt install gnome-tweaks
+# 打开优化设置后->找到键盘设置->选择其他布局选项
+```
+
+### 基础
+
+ + `flameshot`：截图工具1
+
+```bash
+# 安装
+sudo apt install flameshot
+```
+
++ `scrot`：截图工具2
+
+```bash
+sudo apt-get install scrot
+# 截图
+scrot -s temp.png
+```
+
+
++ ranger：终端下目录管理
+
+```bash
+sudo apt-get install ranger
+```
+
++ neofetch ：查看系统配置信息
+
+```bash
+sudo apt-get install neofetch
+```
+
++ tree：查看目录树
+
+```bash
+sudo apt-get install tree
+```
+
++ htop：系统资源使用实时监控
+
+```bash
+sudo apt-get install htop
+```
+
++ `indicator-sysmonitor` 顶部显示系统利用率
+
+```bash
+ sudo add-apt-repository --remove ppa:fossfreedom/indicator-sysmonitor
+ sudo apt-get update
+ sudo apt-get install indicator-sysmonitor
+ indicator-sysmonitor &
+```
+
++ vim
+
+```bash
+sudo apt-get install vim
+```
+
++ nvim1：deb方式安装指定版本nvim
+
+```bash
+sudo apt remove neovim
+sudo dpkg -i nvim-linux.deb
+sudo apt install ./nvim-linux.deb
+sudo apt autoremove
+sudo apt install ./nvim-linux.deb
+sudo chmod  nvim-linux.deb
+sudo apt install ./nvim-linux.deb
+nvim --version
+```
+
++ nvim2: appimg格式
+    + 下载appimg格式，放入特定文件夹
+    + 给appimg文件添加执行权限
+    + 最后配置环境变量即可
+
+### 星火商店
+
+1、下载deb包
+
+2、安装（apt，而不是apt-get）
+
+```bash
+sudo apt install ./spark-store_xxx.deb
+```
+
+### 防火墙ufw
+
+1、安装
+
+```bash
+sudo apt-get install ufw
+```
+
+2、规则添加
+
+```bash
+sudo ufw allow 8080
+sudo ufw allow 8090
+sudo ufw allow 8091
+sudo ufw allow 587
+sudo ufw allow 6379
+sudo ufw allow 8081
+sudo ufw allow 8082
+sudo ufw allow 9876
+sudo ufw allow 2181
+sudo ufw allow 22
+sudo ufw allow 7890
+sudo ufw allow 31181
+sudo ufw allow 8887
+sudo ufw allow 10911
+sudo ufw allow 55602
+sudo ufw allow 10909
+sudo ufw allow 15555
+sudo ufw allow 9876
+sudo ufw allow 10912
+sudo ufw allow 10909
+sudo ufw allow 7890
+# sudo ufw allow from 192.168.1.1
+```
+
+3、查看规则
+
+```bash
+sudo ufw status verbose
+```
+
+### tabby 终端连接工具
+
+```bash
+sudo dpkg -i tabby-1.0.181-linux-x64.deb
+sudo apt-get install ./tabby-1.0.181-linux-x64.deb
+sudo apt-get --fix-broken install ./tabby-1.0.181-linux-x64.deb
+rm tabby-1.0.181-linux-x64.deb
+```
+
+### 查找文件
+
++ fd
+
+```bash
+sudo apt-get install fd
+```
+
++ fzf：终端下模糊搜索
+
+```bash
+sudo apt-get install fzf
+```
+
+### 文件管理器
+
++ sigma file manager
+
+1、下载软件后，设置执行权限
+
+2、安装依赖
+
+```shell
+-- ubuntu22.04
+sudo apt install libfuse2
+```
+
+3、双击AppImage即可运行
+
++ lf
+
+```bash
+sudo apt-get install if
+```
+
++ fd
+
+### 窗口管理器
+
++ i3
+
+### 终端多任务
+
++ tmux
+
++ zellij
+
+```bash
+sudo apt-get install zellij
+```
+### Redis安装
+
++ 直接安装
+
+```shell
+sudo apt install redis-server
+-- 安装完成后，测试Redis是否正常工作
+redis-cli --version
+```
+
++ 客户端1: `Tiny RDM`
++ 客户端2：`Another Redis`
+
+### Zookper安装
+
++ 下载二进制文件压缩包后解压，执行时要进入到bin目录下用bash shell执行
+
++ [可能配置文件未创建成功](https://blog.csdn.net/han_xuefeng/article/details/119885832)
+
+### RocketMQ安装
+
++ [注意配置](https://blog.csdn.net/mario08/article/details/107243730)
+
+
+### PostgreSQL
+
++ 安装：
++ 初始密码
+
+```shell
+# 登录之后给默认用户“postgres”设置密码
+sudo -u postgres psql postgres
+# 给postgres用户设置密码
+postgres= # \password postgres          
+# 输入两次密码
+Enter new password:
+Enter it again:
+```
+
+### Mysql8+
+```shell
+# 安装
+```
+
+### zsh
+
++ oh-my-zsh
+
+  + zsh-autosuggestions
+  + zsh-syntax-highlighting
+  + incr
+
+```shell
+mkdir ~/.oh-my-zsh/plugins/incr 
+# 官网下载文件放置incr目录下
+cd ~/.oh-my-zsh/plugins/incr
+wget https://mimosa-pudica.net/src/incr-0.2.zsh  
+source incr*.zsh
+# 编辑.zshrc文件中的插件配置后重载配置文件即可
+# !!!
+# 如提示incr不存在可将incr-0.2.zsh 改为incr.plugin.zsh  或incr.zsh重试  
+```
+
+### fish-配置麻烦不好用
+
+```shell
+# 安装
+sudo apt install fish
+# 关闭问候语
+# 配置文件中 .config/fish/config.fish 中添加如下配置
+set fish_greeting
+```
+
++ fish配置环境变量
+
+> 在/etc/fish/conf.d目录下的一个fish文件对应一个环境变量，如PATH.fish内容如下：
+>
+> `set -gx PATH $PATH $JAVA_HOME/bin $JRE_HOME/bin $ROCKETMQ_HOME/bin $ZOOKEEPER_HOME/bin`
+> 
+> 对应profie如下：
+>
+> `export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$ROCKETMQ_HOME/bin:$ZOOKEEPER_HOME/bin`
+
+### OpenVPN
+```shell
+# 安装客户端
+sudo apt install openvpn
+# 启用客户端
+openvpn /etc/openvpn/client.ovpn
+# 可以用如下方式隐藏vpn启动的连接终端
+openvpn /etc/openvpn/client.ovpn > /dev/null &
+```
++ 配置：将配置文件移动到`/etc/openvpn`目录下
+
+[配置详解](https://o-u-u.com/?p=2390)
+
+### Clash
+
+
++ [参考1](https://www.alvinkwok.cn/2022/01/29/2022/01/Clash%20For%20Linux%20Install%20Guide/)
+
++ [参考2](https://juejin.cn/post/7127911250654134302)
+
+> Ubuntu配置多个代理端口（如31181，7890）
+> 新建`/etc/profile.d/proxy.sh`填写配置信息
+> 
++ [参考链接](https://blog.csdn.net/u011119817/article/details/110856212)
++ 推荐：`Clash Verge`
+
+### wine8+
+
++ 下载`configFile`中的key文件
++ [wine-builds 清华镜像站](https://mirrors-i.tuna.tsinghua.edu.cn/help/wine-builds/)
++ [如何在 Debian 12/11/10 上安装 Wine 8.0](https://jigutech.com/4271.html)
+
+### VirtualBox
+
+
+
++ ![image-20230401001013205](D:\code\CSNotes\Linux\images\image-20230401001013205.png)
+
++ ![image-20230401001239903](./OrtherTools/images/image-20230401001239903.png)
++ ![image-20230401001200341](./OrtherTools/images/image-20230401001200341.png)
+
+### Rust环境配置
+
+1、配置环境变量
+
+```bash
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+# 对应csh中的命令
+# setenv RUSTUP_DIST_SERVER https://mirrors.ustc.edu.cn/rust-static
+# setenv RUSTUP_UPDATE_ROOT https://mirrors.ustc.edu.cn/rust-static/rustup
+```
+
+2、安装
+
+3、参考
+
+```bash
+$ export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+$ export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+$ sudo curl https://sh.rustup.rs -sSf | sh
+info: downloading installer
+
+Welcome to Rust!
+
+This will download and install the official compiler for the Rust
+programming language, and its package manager, Cargo.
+
+Rustup metadata and toolchains will be installed into the Rustup
+home directory, located at:
+
+  /home/longqiping/.rustup
+
+This can be modified with the RUSTUP_HOME environment variable.
+
+The Cargo home directory located at:
+
+  /home/longqiping/.cargo
+This can be modified with the CARGO_HOME environment variable.
+
+The cargo, rustc, rustup and other commands will be added to
+Cargo's bin directory, located at:
+
+  /home/longqiping/.cargo/bin
+
+This path will then be added to your PATH environment variable by
+modifying the profile files located at:
+
+  /home/longqiping/.profile
+  /home/longqiping/.bashrc
+
+You can uninstall at any time with rustup self uninstall and
+these changes will be reverted.
+
+Current installation options:
+   default host triple: aarch64-unknown-linux-gnu
+     default toolchain: stable (default)
+               profile: default
+  modify PATH variable: yes
+
+1) Proceed with installation (default)
+2) Customize installation
+3) Cancel installation
+>1
+
+info: profile set to 'default'
+info: default host triple is aarch64-unknown-linux-gnu
+info: syncing channel updates for 'stable-aarch64-unknown-linux-gnu'
+info: latest update on 2021-02-11, rust version 1.50.0 (cb75ad5db 2021-02-10)
+info: downloading component 'cargo'
+info: downloading component 'clippy'
+info: downloading component 'rust-docs'
+info: downloading component 'rust-std'
+ 25.9 MiB /  25.9 MiB (100 %)  23.2 MiB/s in  1s ETA:  0s
+info: downloading component 'rustc'
+ 76.5 MiB /  76.5 MiB (100 %)  12.5 MiB/s in  6s ETA:  0s
+info: downloading component 'rustfmt'
+info: installing component 'cargo'
+info: using up to 500.0 MiB of RAM to unpack components
+info: installing component 'clippy'
+info: installing component 'rust-docs'
+ 14.6 MiB /  14.6 MiB (100 %)   8.8 MiB/s in  1s ETA:  0s
+info: installing component 'rust-std'
+ 25.9 MiB /  25.9 MiB (100 %)  11.3 MiB/s in  2s ETA:  0s
+info: installing component 'rustc'
+ 76.5 MiB /  76.5 MiB (100 %)  12.3 MiB/s in  6s ETA:  0s
+info: installing component 'rustfmt'
+info: default toolchain set to 'stable-aarch64-unknown-linux-gnu'
+
+  stable-aarch64-unknown-linux-gnu installed - rustc 1.50.0 (cb75ad5db 2021-02-10)
+Rust is installed now. Great!
+
+To get started you need Cargo's bin directory ($HOME/.cargo/bin) in your PATH
+environment variable. Next time you log in this will be done
+automatically.
+
+To configure your current shell, run:
+source $HOME/.cargo/env
+longqiping@ubuntu:~$ source $HOME/.cargo/env
+longqiping@ubuntu:~$ cargo --version
+cargo 1.50.0 (f04e7fab7 2021-02-04)
+longqiping@ubuntu:~$ rustc --version
+rustc 1.50.0 (cb75ad5db 2021-02-10)
+
+longqiping@ubuntu:~$ cat .cargo/env
+#!/bin/sh
+# rustup shell setup
+# affix colons on either side of $PATH to simplify matching
+case ":${PATH}:" in
+    *:"$HOME/.cargo/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH="$HOME/.cargo/bin:$PATH"
+        ;;
+esac
+```
+
++ [其他工具1](https://www.toutiao.com/article/7119508335744991778/?app=news_article&timestamp=1657682785&use_new_style=1&req_id=202207131126240101401711442031F2DA&group_id=7119508335744991778&share_token=bc014fe2-7e2b-42a2-ab3b-75029971bb61&source=m_redirect&wid=1657683376558)
+
+## 四 Linux软件安装位置
+
++ [软件安装基础知识](https://blog.csdn.net/Courage_Insight/article/details/41827167)
+
+### 安装后的软件位置
+
+1.下载的软件存放位置
+
+`/var/cache/apt/archives`
+
+ 2.安装后软件默认位置
+
+`/usr/share`
+
+ 3.可执行文件位置 
+
+`/usr/bin`
+
+ 4.配置文件位置
+
+`/etc`
+
+ 5.`lib`文件位置
+
+`/usr/lib`
+
+### 安装后配置app快捷访问图标
+
+`/usr/share/applications/`
+
+### 桌面图标配置
+
++ idea.desktop内容如下
+
+```markdown
+[Desktop Entry]
+Name=Intellij IDEA
+Comment=Intellij IDEA
+Exec=/home/nico/soft/java/idea-IU-223.8214.52/bin/idea.sh
+Icon=/home/nico/soft/java/idea-IU-223.8214.52/bin/idea.png
+Terminal=false
+Type=Application
+Categories=Developer
+```
+
+### 蓝牙Bug修复
+
+```
+sudo apt install bluetooth
+# 安装蓝牙管理工具blueman
+sudo apt install blueman -y
+```
+
+### [配置systemctl启动1](https://cloud.tencent.com/developer/article/1975011)
+
+### [配置systemctl启动2](https://blog.csdn.net/t624124600/article/details/111085234)
+
++ 先在`/usr/lib/systemd/system/`下创建unit服务，
+
+### 背景图片位置
+
++ `user/share/backgrounds`
+
+## 五 Neovim配置(lua)
++ [下载Nerd Font字体](https://github.com/ryanoasis/nerd-fonts/releases)
++ `sudo mkdir ~/.fonts`用于创建字体目录
++ 解压后将字体文件夹存放到`~/.fonts`目录下
+
+### blogs
+
++ 基础
+  + https://juejin.cn/post/7111686303950831629
++ 管理插件
+  + [clone 组件后需要根据如下方式加载组件](https://zhuanlan.zhihu.com/p/438380547)
+    + [另一种加载packer的方式](https://zhuanlan.zhihu.com/p/533706959)
++ 插件
+
++ 成功安装的博客
+  + [参考1](https://juejin.cn/post/7104549021686956062)
+
+
+## 六 Docker
+
+### 配置阿里云镜像
+
+![image-20230702135527243](.\images\image-20230702135527243.png)
+
+```shell
+# 可以通过修改daemoni配置文件/etc/docker/daemon.json来使用加i速器
+sudo mkdir -p /etc/docker
+
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+	"registry-mirrors":["https://v9j5rufo.mirror.aliyuncs.com"]
+}
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+## 七 美化
+
++ 安装latte-dock
+
+```
+sudo apt install latte-dock
+```
+
++ 禁用原生dock
+
+```
+gnome-extensions disable ubuntu-dock@ubuntu.com
+```
+
++ 启用原生
+
+```
+gnome-extensions enable ubuntu-dock@ubuntu.com
+```
+
++ 删除latte
+
+```
+sudo apt autoremove --purge latte-dock
+```
+
++ [参考1](https://linux.cn/article-14340-1.html)
+
+
+## 八 Linux（manjaro）
+
 - [Linux（manjaro）](#linuxmanjaro)
   - [1. play on linux](#1-play-on-linux)
   - [2. wine](#2-wine)
@@ -8,10 +753,6 @@
 - [一些NB的操作](#一些nb的操作)
   - [1. 百度文库文档下载](#1-百度文库文档下载)
 
-
-
-
-## Linux（manjaro）
 
 + wireshark
 + wps 
@@ -32,7 +773,8 @@ sudo apt-get install playonlinux
 ```shell
 sudo add-apt-repository ppa:ubuntu-wine/ppa
 sudo apt-get update
-sudo apt-get install wine1.8 winetricks
+# 安装
+sudo apt-get install winetricks
 ```
 
 ### 3. **Ubuntu16.04美化**：
@@ -616,7 +1358,6 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 ### 6.  ssh的使用
 
-```sh
 使用windows端的sshSource软件可实现远程客户端的登陆以及文件上传和下载功能，到了linux平台下则需要依赖ssh命令进行操作
 
 使用方式如下：
@@ -631,7 +1372,7 @@ ssh root@192.168.1.123
 scp /home/hello root@192.168.1.123:/opt/
 把本机/home/目录下的hello文件上传到192.168.1.123这台服务器上的/opt/目录中
 
- 
+ 
 
 2、从服务器上下载文件
 
@@ -640,20 +1381,36 @@ scp /home/hello root@192.168.1.123:/opt/
 scp root@192.168.1.123:/opt/world /home/（本地目录）
 例如scp root@192.168.1.123:/var/world 把192.168.0.101上的/opt/world 的文件下载到/home/（本地目录）
 
- 
+ 
 
 3、从服务器下载整个目录
 
 scp -r root@192.168.1.123:/opt/（远程目录） /home/（本地目录）
-例如:scp -r root@192.168.1.123:/opt/ /home/把远程服务器的/opt/目录拷贝到本机/home/下
+例如:scp -r root@192.168.1.123:/opt/ /home/把远程服务器的/opt/目录拷贝到本机/home/下
 
- 
+ 
 
 4、上传目录到服务器
 
 scp -r source/ root@192.168.1.123:/opt/
-例如：scp -r source/ root@192.168.1.123:/opt/ 把当前目录下的source目录上传到服务器的/opt/ 目录
-```
+例如：scp -r source/ root@192.168.1.123:/opt/ 把当前目录下的source目录上传到服务器的/opt/ 目录
 
 
+### 7.  Linux路径
+
+![](./images/linuxPath.jpg)
+
+### 8.  Linux内核Books
+
++ 王爽汇编语言(教会16位masm汇编)
+
++ x86从实模式到保护模式(了解保护模式)
+
++ 操作系统真象还原(非常棒的一本书1，几千行代码的简单内核，看完这个再看linux内核就基础稳了)
+
++ linux内核设计与实现(很薄，有一个全局观)
+
++ 深入分析linux内核源代码(源码讲解不多，概念实现很多)
+
++ linux内核情景分析(大段linux2.4内核源码分析)
 

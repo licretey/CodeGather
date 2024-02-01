@@ -12,7 +12,7 @@
 + [cygw](./docs/OrtherTools/【01】myOS配置_【others_20200121】.md/###cygw)
 
 
-### [02 Linux](./docs/02Linux.md)
+### [02 Linux](./docs/02Debian系使用手册.md)
 
 + [2.1 Linux换源与更新](./docs/Linux/01Linux换源与更新.md)
 

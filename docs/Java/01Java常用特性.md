@@ -46,23 +46,75 @@
 + JDK工具类说明
 
 ```java
-// proxy jdk创建的代理对象，代理对象执行时自动赋值
-// method、args 被代理目标类的方法与参数（代理类和被代理类实现了同一接口，一般方法名相同）
-InvocationHandler.invoke(Object proxy, Method method, Object[] args)
+private static void test(){
+    // 类加载器
+    ClassLoader cl = Test.class.getClassLoader();
+    // 被代理对象的所有接口
+    Class<?>[] interfaces = Bird.class.getInterfaces();
+    // 代理对象：被代理对象的增强
+    Object o = Proxy.newProxyInstance(cl, interfaces, new InvocationHandler() {
+        // 被代理对象o，执行对应的重载方法时会触发invoke，其中包含了被代理对象的对应方法，若有增强便可以进行执行
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            Bird ga = new Bird("gaga"); // 模拟获取一个被代理对象
+            Object result = method.invoke(ga, args);
+            return result;
+        }
+    });
+    
+    // 代理增强对象执行重载方法，会进入invoke中
+    o.eat();
+}
+
     
 // loader指定了被代理目标类的加载器，
 // interfaces指定了代理哪个接口，
-// InvocationHandler声明了被代理接口的自定义实现
+// InvocationHandler声明了被代理接口的自定义增强实现
 // Object为返回的动态代理对象
-// 实际含义：由loader判断被代理目标类，并且代理目标类实现了接口interfaces的方法；而在InvocationHandler中重载了interfaces的方法，添加增强了操作；最后等待创建的代理对象Object的执行(执行时指定了InvocationHandler.invoke中的proxy、方法和参数)
+// 实际含义：由loader判断被代理目标类，并且被代理目标类实现了接口interfaces的方法；而在InvocationHandler中重载了interfaces的方法，添加了增强操作；最后等待创建的代理对象Object的执行(执行时指定了InvocationHandler.invoke中的proxy、方法和参数)
 public static Object newProxyInstance(ClassLoader loader,
                                       Class<?>[] interfaces,
                                       InvocationHandler h)
+    
+// proxy： jdk创建的代理对象，代理对象执行时自动赋值
+// method、args： 被代理目标类的方法与参数（代理类和被代理类实现了同一接口，一般方法名相同）
+InvocationHandler.invoke(Object proxy, Method method, Object[] args)
 ```
 
 
 
 ### 5.2 Cglib
+
+```java
+@Test
+private void test(){
+    Enhancer enhancer = new Enhancer();
+    // 设置父类字节码对象
+    enhancer.setSuperclass(IAccountImpl.class);
+    // 设置代理增强实现
+    enhancer.setCallback(new MethodInterceptor() {
+        // 代理对象执行时都会调用到intercept方法中
+        @Override
+        public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+            // MethodProxy: 父类（被代理类）中对应方法的代理
+            Object ret = methodProxy.invokeSuper(o,objects); // 调用父类中对应的方法
+            return ret;
+        }
+    });
+    // 生成代理对象：（被代理对象的子类）
+    IAccountImpl proxy = (IAccountImpl)enhancer.create();
+
+    // 通过代理对象执行方法
+    proxy.findById(1);
+}
+```
+
+| JDK                                  | Cglib                                |
+| ------------------------------------ | ------------------------------------ |
+| 被代理对象**必须实现了接口**         | 被代理对象**不要求实现接口**         |
+| 生成的代理对象是被代理对象的**兄弟** | 生成的代理对象是被代理对象的**子类** |
+
+> **Spring默认使用JDK动态代理（被代理的对象不会再放入容器中，直接拿会找不到）**，如果用不了才会使用Cglib动态代理（可以根据被代理对象是否继承接口，自动判断使用何种代理方式）
 
 ## 六 泛型
 

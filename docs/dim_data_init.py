@@ -265,3 +265,4 @@ if __name__ == '__main__':
     for date in date_range:
         init_dim_date(date, f)
     f.close()
+

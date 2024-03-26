@@ -127,6 +127,7 @@ sudo passwd root
 ```shell
 # 使用gnome-teaks设置进行优化
 sudo apt install gnome-tweaks
+sudo apt install chrone-gnome-shell
 # 安装插件管理工具
 sudo apt install 
 ```
@@ -237,6 +238,7 @@ sudo apt-get install htop
 + vim
 
 ```bash
+sudo apt remove vim-common
 sudo apt-get install vim
 ```
 
@@ -257,6 +259,8 @@ nvim --version
     + 下载appimg格式，放入特定文件夹
     + 给appimg文件添加执行权限
     + 最后配置环境变量即可
+    + 管理工具：appimageLauncher
+    + appimage软件仓库：appimagePool
 
 ### 星火商店
 
@@ -487,7 +491,7 @@ openvpn /etc/openvpn/client.ovpn > /dev/null &
 
 
 
-+ ![image-20230401001013205](D:\code\CSNotes\Linux\images\image-20230401001013205.png)
++ ![image-20230401001013205](./OrtherTools/images/image-20230401001013205.png)
 
 + ![image-20230401001239903](./OrtherTools/images/image-20230401001239903.png)
 + ![image-20230401001200341](./OrtherTools/images/image-20230401001200341.png)
@@ -674,6 +678,33 @@ sudo apt install blueman -y
 
 + `user/share/backgrounds`
 
+
+
+
+
+
+
+
+
+### Java环境配置
+
+### GO环境配置
+
++ wget go-linux-amd64.tar.gz
++ 配置环境变量（注意创建一个go的依赖文件夹）
++ 开启gomodules
++ 设置国内代理
+
+```shell
+go env -w GOPROXY=https://proxy.golang.com.cn,https://goproxy.cn,direct
+```
+
+
+
+
+
+
+
 ## 五 Neovim配置(lua)
 + [下载Nerd Font字体](https://github.com/ryanoasis/nerd-fonts/releases)
 + `sudo mkdir ~/.fonts`用于创建字体目录
@@ -691,8 +722,10 @@ sudo apt install blueman -y
 + 成功安装的博客
   + [参考1](https://juejin.cn/post/7104549021686956062)
 
-
 ## 六 Docker
+
++ 安装
++ sudo apt install docker docker-compose
 
 ### 配置阿里云镜像
 
@@ -776,6 +809,9 @@ sudo apt-get update
 # 安装
 sudo apt-get install winetricks
 ```
+
++ [参考1](https://blog.csdn.net/ymz641/article/details/129110605)
++ [参考2](https://blog.csdn.net/x740073529/article/details/119461344)
 
 ### 3. **Ubuntu16.04美化**：
 

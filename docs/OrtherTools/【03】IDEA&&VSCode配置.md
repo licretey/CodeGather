@@ -29,24 +29,24 @@
 
 ## IDEA
 
-> Idea的配置：字体和补全功能
->
-> Idea的快捷键：
-> | 快捷键             | 功能                                   |
-> | ------------------ | -------------------------------------- |
-> | alt+enter          | 导入包，自动修正代码                   |
-> | ctrl+y             | 删除光标所在行                         |
-> | ctrl+d             | 复制光标所在行的内容，插入光标位置下面 |
-> | ctrl+alt+L         | 格式化代码                             |
-> | ctrl+/             | 单行注释，再按取消注释                 |
-> | ctrl+shift+/       | 选中代码注释，多行注释，再按取消注释   |
-> | alt+Ins            | 自动生成代码，toString/get/set等方法   |
-> | alt+shift+上下箭头 | 移动当前代码行                         |
-> | shift+f6           | 批量修改方法中的同名变量               |
-> | ctrl+alt+m         | 对选中的代码块快速封装为一个方法       |
+### IDEA激活
 
-+ idea中写for循环：n.fori然后确定即可
-+ idea下写标准类的快捷方式：按下alt+insert选择要生成的函数，接着选择参数，然后生成
++ [参考1](https://blog.lupf.cn/articles/2022/07/27/1658901515446.html)
++ [参考2](https://zhile.io/2021/11/29/ja-netfilter-javaagent-lib.html)
++ [参考3](https://blog.csdn.net/qq_34707272/article/details/119973456)
++ [参考4](https://www.cnblogs.com/LzsCxb/p/15691203.html)
+
+
+
+## 项目创建
+
++ Do you want to add the following file to Git?（git add） [参考链接]([phpstorm Do you want to add the following file to Git?_liuqun of program life-CSDN博客](https://blog.csdn.net/liuqun0319/article/details/114118498))
+
++ 窗口上多行展示所有类
+
+![](./images/idea02.png)
+
+
 
 ### IDEA调试
 
@@ -63,54 +63,6 @@
 > IDEA中的一个moudle相当于eclipse的一个project，有单独的src文件夹而可以单独运行
 >
 > 而IDEA的一个project是一个大的工作空间，相当于eclipse的一个workplace，可用于包含多个可单独运行的moudle
-
-### IDEA激活
-
-+ [参考1](https://blog.lupf.cn/articles/2022/07/27/1658901515446.html)
-+ [参考2](https://zhile.io/2021/11/29/ja-netfilter-javaagent-lib.html)
-+ [参考3](https://blog.csdn.net/qq_34707272/article/details/119973456)
-+ [参考4](https://www.cnblogs.com/LzsCxb/p/15691203.html)
-
-### 项目创建
-
-+ Do you want to add the following file to Git?（git add） [参考链接]([phpstorm Do you want to add the following file to Git?_liuqun of program life-CSDN博客](https://blog.csdn.net/liuqun0319/article/details/114118498))
-
-+ 窗口上多行展示所有类
-
-![](D:/code/CodeGather/docs/OrtherTools/images/idea02.png)
-
-
-
-### Mybatsi开发模板设置
-
-+ 新增mybatis-cfg.xml模板
-
-![image-20231118155222178](.\images\idea14.png)
-
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>
-  <environments default="development">
-    <environment id="development">
-      <transactionManager type="JDBC"/>
-      <dataSource type="POOLED">
-        <property name="driver" value="${driver}"/>
-        <property name="url" value="${url}"/>
-        <property name="username" value="${username}"/>
-        <property name="password" value="${password}"/>
-      </dataSource>
-    </environment>
-  </environments>
-  <mappers>
-    <mapper resource="org/mybatis/example/BlogMapper.xml"/>
-  </mappers>
-</configuration>
-```
-
-
 
 ## 详细设置
 
@@ -170,6 +122,46 @@
 ![](./images/idea03.png)
 
 ### IDEA 快捷键
+
+### IDEA 优化
+
++ 开启多线程编译
+
++ 优化参数
+```
+-Xms192m
+-Xmx8192m
+-XX:ReservedCodeCacheSize=1024m
+-XX:+UseG1GC
+-XX:SoftRefLRUPolicyMSPerMB=50
+-XX:CICompilerCount=2
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:-OmitStackTraceInFastThrow
+-Dide.managed.by.toolbox=C:\Users\yang\AppData\Local\JetBrains\Toolbox\bin\jetbrains-toolbox.exe
+-Dtoolbox.notification.token=fc3fc812-3ffa-4c06-b595-971e3c6d20a8
+-Dtoolbox.notification.portFile=C:\Users\yang\AppData\Local\JetBrains\Toolbox\cache\ports\902106684.port
+```
+
+
+> Idea的配置：字体和补全功能
+>
+> Idea的快捷键：
+> | 快捷键             | 功能                                   |
+> | ------------------ | -------------------------------------- |
+> | alt+enter          | 导入包，自动修正代码                   |
+> | ctrl+y             | 删除光标所在行                         |
+> | ctrl+d             | 复制光标所在行的内容，插入光标位置下面 |
+> | ctrl+alt+L         | 格式化代码                             |
+> | ctrl+/             | 单行注释，再按取消注释                 |
+> | ctrl+shift+/       | 选中代码注释，多行注释，再按取消注释   |
+> | alt+Ins            | 自动生成代码，toString/get/set等方法   |
+> | alt+shift+上下箭头 | 移动当前代码行                         |
+> | shift+f6           | 批量修改方法中的同名变量               |
+> | ctrl+alt+m         | 对选中的代码块快速封装为一个方法       |
+
++ idea中写for循环：n.fori然后确定即可
++ idea下写标准类的快捷方式：按下alt+insert选择要生成的函数，接着选择参数，然后生成
+
 
 alt+insert ： 创建内容捷键键（新建xxx）
 
@@ -479,7 +471,7 @@ Tab	缩进
 ESC	从工具窗口进入代码文件窗口
 连按两次Shift	弹出 Search Everywhere 弹出层
 
-### 1. 代码模板
+#### 1. 代码模板
 
 >设置一些字母缩写可自动生成部分固定的代码
 >
@@ -502,7 +494,9 @@ ESC	从工具窗口进入代码文件窗口
 
 修改代码模板
 
-### 2. 断点
+#### 2. 断点
+
++ [参考链接](https://mp.weixin.qq.com/s/5xysNwOIl7DhSUSTS53wTg)
 
 设置：专门针对windows，省内存
 
@@ -522,7 +516,7 @@ ESC	从工具窗口进入代码文件窗口
 
 > 让一步步执行的调试跳转到指定条件下停止（右键点击红点配置）
 
-### 3. 创建Javaweb项目
+#### 3. 创建Javaweb项目
 
 + [**1.创建maven项目参考**](https://www.cnblogs.com/shuaishuai1993/p/9795227.html)
 + [**2.部署web项目参考**](https://www.cnblogs.com/1314wamm/p/7475771.html)

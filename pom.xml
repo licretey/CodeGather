@@ -21,6 +21,7 @@
         <module>rocketmq</module>
         <module>http</module>
         <module>mybatisp</module>
+        <module>_01JavaLearn</module>
     </modules>
 
     <properties>

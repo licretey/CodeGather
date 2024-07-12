@@ -774,6 +774,15 @@ sudo apt autoremove --purge latte-dock
 + [参考1](https://linux.cn/article-14340-1.html)
 
 
+
+### 7.1 Gnome extensions
+
++ start-up 防止启动后页面进入桌面选择状态
++ fildem 全局菜单
++ 菜单栏显示缩小图标
++ 菜单栏自动隐藏
+
+
 ## 八 Linux（manjaro）
 
 - [Linux（manjaro）](#linuxmanjaro)

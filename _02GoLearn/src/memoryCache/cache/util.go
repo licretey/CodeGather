@@ -28,15 +28,15 @@ func ParseSize(size string) (int64, string) {
 	switch unit {
 	case "B":
 		byteNum = num
-	case "KB":
+	case "K":
 		byteNum = num * KB
-	case "MB":
+	case "M":
 		byteNum = num * MB
-	case "GB":
+	case "G":
 		byteNum = num * GB
-	case "TB":
+	case "T":
 		byteNum = num * TB
-	case "PB":
+	case "P":
 		byteNum = num * PB
 	default:
 		num = 0

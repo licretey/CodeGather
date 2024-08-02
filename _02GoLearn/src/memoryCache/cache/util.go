@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"encoding/json"
 	"log"
 	"regexp"
 	"strconv"
@@ -53,6 +54,9 @@ func ParseSize(size string) (int64, string) {
 }
 
 func GetValueSize(val interface{}) int64 {
-	// todo
-	return 0
+	// unsafe.Sizeof(val) 存储方式不同，返回值不同，但因为是interface{}所以相同
+	// 野路子：利用序列化json时已确定了类型，从而反序列化获取大小(序列化多添加了"':等符号，可以替换掉再计算)
+	bytes, _ := json.Marshal(val)
+	size := int64(len(bytes))
+	return size
 }

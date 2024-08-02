@@ -4,7 +4,7 @@ import "time"
 
 type Cache interface {
 	//
-	SetMaxMeory(size string) bool
+	SetMaxMemory(size string) bool
 	// get value
 	Get(key string) (interface{}, bool)
 	// set value to cache with expire time (精确到秒)

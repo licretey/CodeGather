@@ -31,7 +31,7 @@ type memeCacheValue struct {
 	size int64
 }
 
-func (m *MemCache) SetMaxMeory(size string) bool {
+func (m *MemCache) SetMaxMemory(size string) bool {
 	m.maxMemorySize, m.maxMemorySizeStr = ParseSize(size)
 	fmt.Println(m.maxMemorySize, m.maxMemorySizeStr)
 	return true
@@ -60,8 +60,8 @@ func (m *MemCache) Set(key string, val interface{}, expire time.Duration) bool {
 	m.add(key, v)
 	if m.currentMemorySize > m.maxMemorySize {
 		m.del(key)
-		log.Println(fmt.Sprintf("max memory size %s", m.maxMemorySize))
-		panic(fmt.Sprintf("max memory size %s", m.maxMemorySize))
+		log.Println(fmt.Sprintf("max memory size %d", m.maxMemorySize))
+		panic(fmt.Sprintf("max memory size %d", m.maxMemorySize))
 	}
 	return false
 }
@@ -107,14 +107,14 @@ func (m *MemCache) Flush() bool {
 
 // Keys get all keys
 func (m *MemCache) Keys() int64 {
-	m.locker.RLocker()
+	m.locker.RLock()
 	defer m.locker.RUnlock()
 	return int64(len(m.values))
 }
 
 func (m *MemCache) clearExpiredItem() {
 	// 定时触发器
-	timeTicker := time.NewTimer(m.clearExpiredInterval)
+	timeTicker := time.NewTicker(m.clearExpiredInterval)
 	defer timeTicker.Stop()
 
 	for {
@@ -136,7 +136,7 @@ func (m *MemCache) clearExpiredItem() {
 func NewMemCache() Cache {
 	m := &MemCache{
 		values:               make(map[string]*memeCacheValue),
-		clearExpiredInterval: time.Second * 3,
+		clearExpiredInterval: time.Second,
 	}
 	go m.clearExpiredItem()
 	return m

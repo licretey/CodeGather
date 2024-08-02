@@ -1,16 +1,20 @@
 package main
 
 import (
-	"memoryCache/cache"
+	cache_server "memoryCache/cache-server"
 	"time"
 )
 
 func main() {
-	cc := cache.NewMemCache()
-	cc.SetMaxMeory("2G")
+	cc := cache_server.NewCacheServer()
+	cc.SetMaxMemory("200M")
 
 	cc.Set("int", 1, time.Second)
 	cc.Set("bool", false, time.Second)
+	cc.Set("data", map[string]interface{}{"a": 1}, time.Second)
+	cc.Set("int", 1)
+	cc.Set("bool", false)
+	cc.Set("data", map[string]interface{}{"a": 1})
 
 	cc.Get("int")
 	cc.Del("bool")

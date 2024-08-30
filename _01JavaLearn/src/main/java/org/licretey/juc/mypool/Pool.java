@@ -8,7 +8,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
 /**
- * @author 雷智民
+ * 
  * @version 1.0
  * @description: <对此类的描述>
  * @date 2024/5/15 17:29
@@ -23,7 +23,7 @@ public class Pool {
      等待超时处理
      分布式hash
      * @return null
-     * @author 雷智民
+     * 
      * @date 2024-05-15 17:53:51
      */
 

@@ -3,7 +3,7 @@ package org.licretey.juc;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author 雷智民
+ * 
  * @version 1.0
  * @description: <对此类的描述>
  * @date 2024/5/14 11:23

@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * @author 雷智民
+ * 
  * @version 1.0
  * @description: 原子引用
  * @date 2024/5/14 11:23

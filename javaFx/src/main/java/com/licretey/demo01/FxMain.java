@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * @Description:
  * @Date: 2024/8/5 14:01
  */
-public class FxMain extends Application{
+public class FxMain extends Application {
     public static void main(String[] args) {
         Application.launch(args);
     }

@@ -23,6 +23,7 @@
         <module>mybatisp</module>
         <module>_01JavaLearn</module>
         <module>javaFx</module>
+        <module>_03expamples</module>
     </modules>
 
     <properties>

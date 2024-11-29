@@ -12,6 +12,7 @@ main() {
   //   ),
   // ));
 
+
   runApp(const MaterialApp(
     home: Scaffold(
       // appBar: AppBar(
@@ -26,4 +27,16 @@ main() {
       ),
     ),
   ));
+}
+// 有状态Widget：运行过程中存在一些数据的改变，可以使用StatusWidget
+// 无状态Widget：运行过程中无数据的改变(内容确定)，可以使用StatelessWidget
+class HYHomePage extends StatelessWidget{
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Text("Test widget");
+  }
+
 }

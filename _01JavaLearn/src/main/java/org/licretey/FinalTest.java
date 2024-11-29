@@ -1,6 +1,7 @@
 package org.licretey;
 
-import jdk.jfr.internal.Logger;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +34,8 @@ class Value2 extends Value{
 
 }
 
+
+@Slf4j
 public class FinalTest {
 
      final int f1 = 1;
@@ -65,8 +68,9 @@ public class FinalTest {
              String key = entry.getKey();
              String value = entry.getValue();
              System.out.println(key+"----"+value);
-             Logger log = new Logger();
-             log.notify(); //  自动拆箱装箱
+             //Logger log = new Logger();
+             //log.notify(); //  自动拆箱装箱
+             log.info("key:{}, value:{}", key, value);
          }
      }
  }

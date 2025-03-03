@@ -28,3 +28,6 @@ hs_err_pid*
 *.iml
 
 */target/
+*/learnflutter/build/
+*/learnflutter/.dart_tool
+*/learnflutter/*/flutter
